@@ -1,1 +1,1 @@
-web: gunicorn webbanhangg.wgsi 
+web: gunicorn webbanhangg.wgsi:application --log-file -
