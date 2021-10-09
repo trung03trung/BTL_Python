@@ -1,0 +1,1 @@
+web: gunicorn webbanhangg.wgsi --log-file -
