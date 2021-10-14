@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/main1.css' %}">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -87,7 +87,11 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#">My Account</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'logout'%}">Đăng xuất</a></li>
+                            {%else %}
+                             <li><a href="{% url 'login'%}">Đăng nhập</a></li>
+                             {% endif %}
                             <li><a href="#">Our location</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
@@ -439,7 +443,7 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="{% static 'media/' %}{{itempro.product_image}}" class="img-fluid" alt="Image">
+                                                    <img src="{% static 'media/' %}{{itempro.product_image1}}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a href="shop-detail{{itempro.product_id}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
