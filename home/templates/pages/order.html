@@ -1,0 +1,68 @@
+{% extends "pages/base.html" %}
+{% load cart_tag %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/main1.css' %}">
+<div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Cart</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">Order</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="cart-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng cộng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in yourOder %}
+                                <tr>
+                                    <td class="thumbnail-img">
+                                        <a href="#">
+									<img class="img-fluid" src="{% static 'media/' %}{{i.image}}" alt="" />
+								</a>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a href="#">
+									{{i.product}}
+								</a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p>{{i.price}}đ</p>
+                                    </td>
+                                    <td class="cart_quantity">
+								<div class="cart_quantity_button">
+									
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{i.quantity}}" autocomplete="off" size="2">
+								</div>
+							</td>
+                                    <td class="total-pr">
+                                        <p>{{i.total }}đ</p>
+                                
+                                </tr>
+                              {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

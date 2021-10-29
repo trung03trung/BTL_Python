@@ -1,0 +1,65 @@
+{% extends 'pages/base.html' %}
+{%load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/main1.css' %}">
+ <div class="container">
+ <div class="product-categori">
+     <div class="search-product">
+                            <form action="#">
+                                <input class="form-control" placeholder="Search here..." type="text">
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+    </div>
+    <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                
+                                 <h1 style="margin-left:500px;">Kết quả tìm kiếm</h1>
+                            </div>
+                            
+                        </div>
+      {%if products|length < 1%}
+       <div class="container text-center">
+		<div class="logo-404">
+			<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+		</div>
+		<div class="content-404">
+			<img src="images/404/404.png" class="img-responsive" alt="" />
+			<h1><b>OPPS!</b> We Couldn’t Find this Page</h1>
+			<p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
+			<h2><a href="index.html">Bring me back Home</a></h2>
+		</div>
+	</div>
+        {% endif %}
+     <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        
+                                        {% for itempro  in products  %}
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="sale">Sale</p>
+                                                    </div>
+                                                    <img src="{% static 'media/' %}{{itempro.product_image1}}" class="img-fluid" alt="Image">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="shop-detail{{itempro.product_id}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="{%url 'cart_add' itempro.product_id%}">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                    <h4><a href="{%url 'shop-detail' itempro.product_id %}">{{itempro.product_name}}</a></h4>
+                                                    <h5> {{itempro.product_price}} đ</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                       
+                                    </div>
+                                </div>
+                        </div>
+{% endblock %}

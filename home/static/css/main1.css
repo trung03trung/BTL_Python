@@ -8,9 +8,9 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
-  position: relative;
+  foni-size:15px;
   font-weight:400px;
+  line-height:1.80857;
 }
 
 ul li {
@@ -580,7 +580,7 @@ ul.sub-menu {
 	  background: #FE980F;
 }
 
-.item {
+.item1 {
   padding-left: 100px;
 }
 
@@ -1190,11 +1190,11 @@ h2.title {
   right: 0;
 }
 
-#similar-product .carousel-inner .item{
+#similar-product .carousel-inner .item1{
 	padding-left:0px;
 }
 
-#similar-product .carousel-inner .item img {
+#similar-product .carousel-inner .item1 img {
   display: inline-block;
   margin-left: 15px;
 }

@@ -1,0 +1,131 @@
+{% extends 'pages/base.html' %}
+{%load static%}
+{% load cart_tag %}
+{%block body%}
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Checkout</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active">Checkout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Cart  -->
+    
+    <div class="cart-box-main">
+        <div class="container">
+            <div class="row new-account-login">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="title-left">
+                        {% if user.is_authenticated %}
+                       <h3> Xin chào {{user.username}}</h3>
+                         <a  href="{% url 'logout' %}"><span>Đăng xuất</span></a>
+                       {%else%}
+                         <h3> <a href="{% url 'login'%}">Đăng nhập tài khoản</a></h3>
+                         {%endif%}
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="title-left">
+                        <h3><a href="{% url 'signup'%}">Tạo tài khoản mới</a></h3>
+                   
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Thông tin giao hàng</h3>
+                        </div>
+                        <form method="post"  class="needs-validation" novalidate>
+                                {% csrf_token %}
+                            <div class="row">
+                               
+                            </div>
+                            <div class="mb-3">
+                                <label for="username">Họ tên *</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="name" id="username" placeholder="" required>
+                                    <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">Email Address *</label>
+                                <input type="email" class="form-control" id="email" placeholder="">
+                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address">Địa chỉ giao hàng *</label>
+                                <input type="text" name="address" class="form-control" id="address" placeholder="" required>
+                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address2">Số điện thoại *</label>
+                                <input type="text" name="phone" class="form-control" id="address2" placeholder=""> </div>
+                          
+
+                              <div class="col-12 d-flex shopping-box"> <button type="submit" style="color:white" class="ml-auto btn hvr-hover">Đặt hàng</button> </div>
+                             </form>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 mb-3">
+                    <div class="row">
+                
+                        <div class="col-md-12 col-lg-12">
+                             <div class="odr-box">
+                                <div class="title-left">
+                                    <h3>Sản phẩm</h3>
+                                </div>
+                                <div class="rounded p-2 bg-light">
+                                   
+                                    <div class="media mb-2 border-bottom">
+                                        <div class="media-body"> <a href="detail.html">{{product.product_name}}</a>
+                                            <div class="small text-muted">Giá tiền: {{product.product_price}}đ <span class="mx-2">|</span>Số lượng:1<span class="mx-2">|</span> Tổng: {{product.product_price}}đ</div>
+                                        </div>
+                                    </div>
+                            
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="order-box">
+                                <div class="title-left">
+                                    <h3>Số tiền phải thanh toán</h3>
+                                </div>
+                                <hr class="my-1">
+                                <div class="d-flex">
+                                    <h4>Tổng tiền các sản phẩm</h4>
+                                    <div class="ml-auto font-weight-bold">{{product.product_price}}</div>
+                                </div>
+                                <div class="d-flex">
+                                    <h4>Phí vận chuyển</h4>
+                                    <div class="ml-auto font-weight-bold">30000</div>
+                                </div>
+                                <hr>
+                                <div class="d-flex gr-total">
+                                    <h5>Tổng cộng</h5>
+                                    <div class="ml-auto h5">{{total}}</div>
+                                </div>
+                                <hr> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {%endblock%}
+    <!-- End Cart -->
+
+    
+   
