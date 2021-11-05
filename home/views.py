@@ -59,6 +59,11 @@ def checkout(request):
 
             )
             order.save()
+            product=Product.objects.get(product_id=cart[i]['product_id'])
+            amount=product.product_amount
+            amount+=cart[i]['quantity']
+            product.product_amount=amount
+            product.save()
         request.session['cart']={}
         return redirect('home')
 
@@ -79,16 +84,21 @@ def signup(request):
     else:
         form=UsercreateForm()
     return render(request,'widgets/signup.html',{'form':form})
-@login_required(login_url="/account/login")
+@login_required(login_url="/account/login/")
 def cart_add(request, id):
     cart = Cart(request)
     product = Product.objects.get(product_id=id)
     cate_id=product.catec_id
     cart.add(product=product)
     return redirect("product",id=cate_id)
+@login_required(login_url="/account/login/")
+def cart_add_detail(request, id):
+    cart = Cart(request)
+    product = Product.objects.get(product_id=id)
+    cart.add(product=product)
+    return redirect("shop-detail",id=id)
 
-
-@login_required(login_url="/account/login")
+@login_required(login_url="/account/login/")
 def item_clear(request, id):
     cart = Cart(request)
     product = Product.objects.get(product_id=id)
@@ -96,7 +106,7 @@ def item_clear(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url="/account/login")
+@login_required(login_url="/account/login/")
 def item_increment(request, id):
     cart = Cart(request)
     product = Product.objects.get(product_id=id)
@@ -104,7 +114,7 @@ def item_increment(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url="/account/login")
+@login_required(login_url="/account/login/")
 def item_decrement(request, id):
     cart = Cart(request)
     product = Product.objects.get(product_id=id)
@@ -112,14 +122,14 @@ def item_decrement(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url="/account/login")
+@login_required(login_url="/account/login/")
 def cart_clear(request):
     cart = Cart(request)
     cart.clear()
     return redirect("cart_detail")
 
 
-@login_required(login_url="/account/login")
+@login_required(login_url="/account/login/")
 def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
 def your_order(request):
@@ -158,6 +168,10 @@ def buy_new(request,id):
 
             )
         order.save()
+        amount=product.product_amount
+        amount+=1
+        product.product_amount=amount
+        product.save()
         return redirect('home')
 
     return render(request,'cart/buynew.html',{'product':product,'total':total})

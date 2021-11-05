@@ -3,6 +3,7 @@ from django.urls import path
 from django.urls.conf import include
 from . import views
 from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path ('',views.index),
     path ('home',views.index,name='home'),
@@ -18,6 +19,7 @@ urlpatterns = [
      path('buy_new/<int:id>',views.buy_new,name='buy_new'),
      #add to cart
      path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
+      path('cart/add_detail/<int:id>/', views.cart_add_detail, name='cart_add_detail'),
     path('cart/item_clear/<int:id>/', views.item_clear, name='item_clear'),
     path('cart/item_increment/<int:id>/',
          views.item_increment, name='item_increment'),
@@ -27,4 +29,4 @@ urlpatterns = [
     path('cart/cart-detail/',views.cart_detail,name='cart_detail'),
 
     path('search/',views.search,name='search')
-]
+] +static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

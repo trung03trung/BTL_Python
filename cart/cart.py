@@ -30,6 +30,7 @@ class Cart(object):
                 'quantity': 1,
                 'price': str(product.product_price),
                 'image': product.product_image1.url
+                
             }
         else:
             newItem = True
