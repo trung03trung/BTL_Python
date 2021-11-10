@@ -23,6 +23,7 @@
     <!-- Start Shop Detail  -->
     <div class="shop-detail-box-main">
         <div class="container">
+        <form action="{%url 'cart_add_detail' detail.product_id%}">
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
@@ -55,39 +56,35 @@
                 <div class="col-xl-7 col-lg-7 col-md-6">
                     <div class="single-product-details">
                         <h2>{{detail.product_name}}</h2>
-                        <h5> <del>{{detail.product_price}}</del>{{detail.product_price}}</h5>
+                        <h5> {{detail.product_price}} đ</h5>
                              <p class="available-stock"><span>{{detail.product_amount}} đã bán </a></span>
                             </p>
-                                <h4>Mô tả sản phẩm</h4>
+                                <h4>Mô tả sản phẩm</h4>  
                                 <p>{{detail.description}} </p>
                                 <ul>
                                     <li>
+                                  
                                         <div class="form-group size-st">
                                             <label class="size-label">Size</label>
-                                            <select id="basic" class="selectpicker show-tick form-control">
-									<option value="0">Size</option>
-									<option value="0">S</option>
-									<option value="1">M</option>
-									<option value="1">L</option>
-									<option value="1">XL</option>
-									<option value="1">XXL</option>
-									<option value="1">3XL</option>
-									<option value="1">4XL</option>
+                                            <select id="basic" name="size" class="selectpicker show-tick form-control" required>
+									<option value="" >Size</option>
+									<option >S</option>
+									<option >M</option>
+									<option >L</option>
+									<option >XL</option>
+									<option >XXL</option>
+									
 								</select>
                                         </div>
+                                   
                                     </li>
-                                    <li>
-                                        <div class="form-group quantity-box">
-                                            <label class="control-label">Quantity</label>
-                                            <input class="form-control" value="0" min="0" max="20" type="number">
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
 
                                 <div class="price-box-bar">
                                     <div class="cart-and-bay-btn">
-                                        <a class="btn hvr-hover" data-fancybox-close="" href="{%url 'buy_new' detail.product_id%}">Mua Ngay</a>
-                                        <a class="btn hvr-hover" data-fancybox-close="" href="{%url 'cart_add_detail' detail.product_id %}">Thêm vào giỏ hàng</a>
+                                      <button class="btn hvr-hover" formaction="{%url 'buy_new' detail.product_id%}" style="color: #ffffff;font-weight: 700;padding: 9px 17px;" type="submit">Mua ngay</button>
+                                      <button class="btn hvr-hover" formaction="{%url 'cart_add_detail' detail.product_id%}" style="color: #ffffff;font-weight: 700;padding: 9px 17px;" type="submit">Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
 
@@ -104,12 +101,12 @@
                     </div>
                 </div>
             </div>
+            </form>
 
             <div class="row my-5">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
                         <h1>Sản Phẩm liên quan</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
                     </div>
                     <div class="featured-products-box owl-carousel owl-theme">
                         {% for items in otherpro  %}

@@ -29,8 +29,8 @@ class Cart(object):
                 'name': product.product_name,
                 'quantity': 1,
                 'price': str(product.product_price),
-                'image': product.product_image1.url
-                
+                'image': product.product_image1.url,
+                'size':product.product_size
             }
         else:
             newItem = True

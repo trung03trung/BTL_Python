@@ -16,8 +16,6 @@ def index(request):
     product_new=Product.objects.filter(status=2)
     product_f=Product.objects.filter(promotion=1)
     return render(request,'pages/index.html',{'product_new':product_new,'product_featured':product_f})
-def service(request):
-    return render(request,'pages/service.html')
 def shop(request):
     listcp=Category_parent.objects.all()
     listcc=Category_chile.objects.all()
@@ -52,6 +50,7 @@ def checkout(request):
                 product=cart[i]['name'],
                 price=cart[i]['price'],
                 quantity=cart[i]['quantity'],
+                size=cart[i]['size'],
                 image=cart[i]['image'],
                 total=total,
                 address=address,
@@ -95,7 +94,11 @@ def cart_add(request, id):
 def cart_add_detail(request, id):
     cart = Cart(request)
     product = Product.objects.get(product_id=id)
+    size=request.GET['size'] 
+    product.product_size=size
+   
     cart.add(product=product)
+   
     return redirect("shop-detail",id=id)
 
 @login_required(login_url="/account/login/")
@@ -147,6 +150,8 @@ def search(request):
     return render(request,'pages/search.html',context)
 def buy_new(request,id): 
     product=Product.objects.get(product_id=id)
+    size=request.GET['size']
+    product.product_size=size
     total=product.product_price+30000
     if request.method=="POST":
         name=request.POST.get('name')
@@ -161,6 +166,7 @@ def buy_new(request,id):
                 product=product.product_name,
                 price=product.product_price,
                 quantity=1,
+                size=product.product_size,
                 image=product.product_image1,
                 total=product.product_price,
                 address=address,

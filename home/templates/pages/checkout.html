@@ -90,7 +90,7 @@
                                      {% for key,value in request.session.cart.items %}
                                     <div class="media mb-2 border-bottom">
                                         <div class="media-body"> <a href="detail.html">{{value.name}}</a>
-                                            <div class="small text-muted">Giá tiền: {{value.price}} <span class="mx-2">|</span>Số lượng: {{value.quantity}}<span class="mx-2">|</span> Tổng: {{value.price|multiply:value.quantity }}đ</div>
+                                            <div class="small text-muted">Giá tiền: {{value.price}} <span class="mx-2">|</span>Số lượng: {{value.quantity}}<span class="mx-2">|</span>Size: {{value.size}}<span class="mx-2">|</span> Tổng: {{value.price|multiply:value.quantity }}đ</div>
                                         </div>
                                     </div>
                                     {% endfor %}
