@@ -1,16 +1,16 @@
-{% extends 'pages/base.html' %}
+{% extends 'pages/shop.html' %}
 {%load static %}
-{% block body %}
+
 <link rel="stylesheet" href="{% static 'css/main1.css' %}">
- <div class="container">
+{% block body %}
+  <div class="container"> 
  <div class="product-categori">
-     <div class="search-product">
-                            <form action="#">
-                                <input class="form-control" placeholder="Search here..." type="text">
+      <div class="search-product">
+                            <form method="get" action="/search/">
+                                <input class="form-control" name="query" placeholder="Search here..." type="text">
                                 <button type="submit"> <i class="fa fa-search"></i> </button>
                             </form>
                         </div>
-    </div>
     <div class="product-item-filter row">
                             <div class="col-12 col-sm-8 text-center text-sm-left">
                                 
