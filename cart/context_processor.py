@@ -5,8 +5,8 @@ def cart_total(request):
 		cart = Cart(request)
 		total_bill = 0.0
 		for key,value in request.session['cart'].items():
-			total_bill = total_bill + (float(value['price']) * value['quantity'])+30000
-		return {'cart_total' : total_bill} 
+			total_bill = total_bill + (float(value['price']) * value['quantity'])
+		return {'cart_total' : total_bill+30000} 
 	else:
 		return {'cart_total' : 0} 
 def cart_total_amount(request):
