@@ -135,6 +135,8 @@ def cart_clear(request):
 @login_required(login_url="/account/login/")
 def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
+    
+@login_required(login_url="/account/login/")
 def your_order(request):
     uid=request.session.get('_auth_user_id')
     user=User.objects.get(pk=uid)
