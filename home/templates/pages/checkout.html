@@ -47,7 +47,7 @@
                         <div class="title-left">
                             <h3>Thông tin giao hàng</h3>
                         </div>
-                        <form method="post" action="checkout.html" class="needs-validation" novalidate>
+                        <form method="post" action="checkout.html" class="needs-validation" >
                                 {% csrf_token %}
                             <div class="row">
                                
@@ -55,23 +55,23 @@
                             <div class="mb-3">
                                 <label for="username">Họ tên *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="name" id="username" placeholder="" required>
+                                    <input type="text" class="form-control" name="name" id="username" placeholder="" value=""  required>
                                     <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email">Email Address *</label>
-                                <input type="email" class="form-control" id="email" placeholder="">
+                                <input type="email" class="form-control" id="email" placeholder="" value=""  required>
                                 <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Địa chỉ giao hàng *</label>
-                                <input type="text" name="address" class="form-control" id="address" placeholder="" required>
+                                <input type="text" name="address" class="form-control" id="address" placeholder="" value=""  required>
                                 <div class="invalid-feedback"> Please enter your shipping address. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address2">Số điện thoại *</label>
-                                <input type="text" name="phone" class="form-control" id="address2" placeholder=""> </div>
+                                <input type="text" name="phone" class="form-control" id="address2" placeholder="" value=""  required> </div>
                           
 
                               <div class="col-12 d-flex shopping-box"> <button type="submit" style="color:white" class="ml-auto btn hvr-hover">Đặt hàng</button> </div>

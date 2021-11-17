@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UsernameField
-from django.db.models import query
+from django.db.models import query,Q
 from django.shortcuts import  redirect, render
 from django.http import HttpResponseRedirect
 from .models import Category_parent,Category_chile, Order,Product,UsercreateForm,UserPassword
@@ -27,10 +27,12 @@ def product(request,id):
     listcp=Category_parent.objects.all()
     listcc=Category_chile.objects.all()
     productcat=Product.objects.filter(catec_id=id)
-    return render(request,'widgets/product.html',{'categoriesP':listcp,'categoriesC':listcc,'products':productcat})
+    title=Category_chile.objects.get(catec_id=id)
+    return render(request,'widgets/product.html',{'categoriesP':listcp,'categoriesC':listcc,'products':productcat,'title':title})
 def product_detail(request,id):
     detail=Product.objects.get(product_id=id)
     otherPro=Product.objects.filter(catec_id=detail.catec_id)
+    otherPro=otherPro.filter(~Q(product_id=detail.product_id))
     return render(request,'pages/shop-detail.html',{'detail':detail,'otherpro':otherPro})
 def checkout(request):
     if request.method=="POST":
