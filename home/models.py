@@ -81,11 +81,6 @@ class UsercreateForm(UserCreationForm):
         if User.objects.filter(email=self.cleaned_data['email']).exists():
             raise forms.ValidationError(self.fields['email'].error_messages['exist'])
         return self.cleaned_data['email']
-class UserPassword(models.Model):
-    username=models.CharField(max_length=255)
-    password=models.CharField(max_length=255)
-    def __str__(self):
-        return self.username
 class Order(models.Model):
     Order_id=models.AutoField(primary_key='true')
     product=models.CharField(max_length=200)

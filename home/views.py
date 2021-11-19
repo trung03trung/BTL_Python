@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UsernameField
 from django.db.models import query,Q
 from django.shortcuts import  redirect, render
 from django.http import HttpResponseRedirect
-from .models import Category_parent,Category_chile, Order,Product,UsercreateForm,UserPassword
+from .models import Category_parent,Category_chile, Order,Product,UsercreateForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
@@ -79,7 +79,7 @@ def signup(request):
                 password=form.cleaned_data['password1']
             )
             login(request,new_user)
-            UserPassword(username=form.cleaned_data['username'],password=form.cleaned_data['password1']).save()
+        
             return redirect('home')
     
     else:
