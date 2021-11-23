@@ -76,11 +76,12 @@ class Cart(object):
 
                 value['quantity'] = value['quantity'] - 1
                 if(value['quantity'] < 1):
-                    return redirect('cart:cart_detail')
+                    return redirect('cart_detail')
                 self.save()
                 break
             else:
                 print("Something Wrong")
+                
 
     def clear(self):
         # empty cart
